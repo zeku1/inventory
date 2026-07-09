@@ -8,7 +8,7 @@ namespace InventoryERP.Data.Models
         public int Id { get; set; }
         public string ReferenceNumber { get; set; }
         public int SupplierId { get; set; }
-        public Supplier Supplier { get; set; }
+        public Supplier? Supplier { get; set; }
         public DateTime PurchaseDate { get; set; }
         public decimal TotalCost { get; set; }
         public string Status { get; set; } // Pending, Received, Cancelled

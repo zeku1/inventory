@@ -6,7 +6,7 @@ namespace InventoryERP.Data.Models
         public string ProductCode { get; set; }
         public string Name { get; set; }
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
         public string Unit { get; set; }
         public decimal SellingPrice { get; set; }
         public decimal CostPrice { get; set; }
