@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="InventoryERP.Data/InventoryERP.Data.csproj" />
+  <Project Path="InventoryERP.Web/InventoryERP.Web.csproj" />
+</Solution>

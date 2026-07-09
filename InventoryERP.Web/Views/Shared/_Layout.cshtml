@@ -1,0 +1,69 @@
+@using Microsoft.AspNetCore.Identity
+@using InventoryERP.Data
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - InventoryERP</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                ERP System
+            </div>
+            <nav>
+                <a class="nav-link" asp-controller="Home" asp-action="Index">Dashboard</a>
+                
+                @if (User.IsInRole("Administrator") || User.IsInRole("Inventory Staff"))
+                {
+                    <a class="nav-link" asp-controller="Products" asp-action="Index">Products</a>
+                    <a class="nav-link" asp-controller="Categories" asp-action="Index">Categories</a>
+                    <a class="nav-link" asp-controller="Suppliers" asp-action="Index">Suppliers</a>
+                    <a class="nav-link" asp-controller="Purchases" asp-action="Index">Purchases</a>
+                }
+                
+                @if (User.IsInRole("Administrator") || User.IsInRole("Sales Staff"))
+                {
+                    <a class="nav-link" asp-controller="Sales" asp-action="Index">Sales</a>
+                }
+
+                @if (User.IsInRole("Administrator"))
+                {
+                    <a class="nav-link" asp-controller="Users" asp-action="Index">Manage Users</a>
+                }
+            </nav>
+        </aside>
+        
+        <div class="main-content">
+            <header class="topbar">
+                <div style="color: var(--text-secondary); margin-right: 1rem;">
+                    Hello, @User.Identity?.Name!
+                </div>
+                <form class="form-inline" asp-controller="Account" asp-action="Logout" method="post">
+                    <button type="submit" class="btn-primary" style="background: transparent; border: 1px solid var(--accent);">Logout</button>
+                </form>
+            </header>
+            <main class="content-wrapper">
+                @RenderBody()
+            </main>
+        </div>
+    }
+    else
+    {
+        @RenderBody()
+    }
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

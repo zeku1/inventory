@@ -1,0 +1,16 @@
+@model InventoryERP.Web.Models.UserViewModel
+
+@{
+    ViewData["Title"] = "Delete User";
+}
+
+<div class="glass-panel" style="max-width: 500px; margin: 0 auto; text-align: center;">
+    <h2 style="color: var(--danger); margin-bottom: 1rem;">Are you sure?</h2>
+    <p style="margin-bottom: 2rem;">You are about to delete the user <strong>@Model.Email</strong>.</p>
+    
+    <form asp-action="Delete" method="post" style="display: flex; gap: 1rem; justify-content: center;">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn-primary" style="background-color: var(--danger);">Yes, Delete</button>
+        <a asp-action="Index" class="btn-primary" style="background: transparent; border: 1px solid var(--border); color: var(--text-primary);">Cancel</a>
+    </form>
+</div>
