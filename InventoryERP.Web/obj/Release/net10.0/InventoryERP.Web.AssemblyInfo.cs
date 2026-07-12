@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InventoryERP.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e1b64f998475ffc0653222e656f74f9d98612e77")]
 [assembly: System.Reflection.AssemblyProductAttribute("InventoryERP.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InventoryERP.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
