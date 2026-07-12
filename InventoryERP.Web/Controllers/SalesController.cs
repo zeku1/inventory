@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace InventoryERP.Web.Controllers
 {
-    [Authorize(Roles = "Administrator,Sales Staff")]
+    [Authorize(Roles = "Super Admin,Sales Staff")]
     public class SalesController : Controller
     {
         private readonly ApplicationDbContext _context;

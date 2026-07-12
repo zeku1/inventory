@@ -8,37 +8,43 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - InventoryERP</title>
+    <title>@ViewData["Title"] - SmartStock</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
 
     @if (SignInManager.IsSignedIn(User))
     {
         <aside class="sidebar">
-            <div class="sidebar-header">
-                ERP System
+            <div class="sidebar-header" style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-bottom: 2rem;">
+                <img src="~/images/logo.png" alt="SmartStock Logo" style="height: 50px; max-width: 100%; object-fit: contain; border-radius: 4px;" asp-append-version="true" />
+                <span style="font-size: 1.25rem; font-weight: 700; letter-spacing: 0.05em; color: var(--text-primary);">SmartStock</span>
             </div>
             <nav>
-                <a class="nav-link" asp-controller="Home" asp-action="Index">Dashboard</a>
+                <a class="nav-link" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
                 
-                @if (User.IsInRole("Administrator") || User.IsInRole("Inventory Staff"))
+                @if (User.IsInRole("Super Admin") || User.IsInRole("Administrator") || User.IsInRole("Inventory Staff") || User.IsInRole("Sales Staff"))
                 {
-                    <a class="nav-link" asp-controller="Products" asp-action="Index">Products</a>
-                    <a class="nav-link" asp-controller="Categories" asp-action="Index">Categories</a>
-                    <a class="nav-link" asp-controller="Suppliers" asp-action="Index">Suppliers</a>
-                    <a class="nav-link" asp-controller="Purchases" asp-action="Index">Purchases</a>
-                }
-                
-                @if (User.IsInRole("Administrator") || User.IsInRole("Sales Staff"))
-                {
-                    <a class="nav-link" asp-controller="Sales" asp-action="Index">Sales</a>
+                    <a class="nav-link" asp-controller="Products" asp-action="Index"><i class="fa-solid fa-box-open"></i> Products</a>
                 }
 
-                @if (User.IsInRole("Administrator"))
+                @if (User.IsInRole("Super Admin") || User.IsInRole("Administrator") || User.IsInRole("Inventory Staff"))
                 {
-                    <a class="nav-link" asp-controller="Users" asp-action="Index">Manage Users</a>
+                    <a class="nav-link" asp-controller="Categories" asp-action="Index"><i class="fa-solid fa-tags"></i> Categories</a>
+                    <a class="nav-link" asp-controller="Suppliers" asp-action="Index"><i class="fa-solid fa-truck-field"></i> Suppliers</a>
+                    <a class="nav-link" asp-controller="Purchases" asp-action="Index"><i class="fa-solid fa-cart-shopping"></i> Purchases</a>
+                }
+                
+                @if (User.IsInRole("Super Admin") || User.IsInRole("Sales Staff"))
+                {
+                    <a class="nav-link" asp-controller="Sales" asp-action="Index"><i class="fa-solid fa-file-invoice-dollar"></i> Sales</a>
+                }
+
+                @if (User.IsInRole("Super Admin") || User.IsInRole("Administrator"))
+                {
+                    <a class="nav-link" asp-controller="Users" asp-action="Index"><i class="fa-solid fa-users-gear"></i> Manage Users</a>
                 }
             </nav>
         </aside>
@@ -49,7 +55,7 @@
                     Hello, @User.Identity?.Name!
                 </div>
                 <form class="form-inline" asp-controller="Account" asp-action="Logout" method="post">
-                    <button type="submit" class="btn-primary" style="background: transparent; border: 1px solid var(--accent);">Logout</button>
+                    <button type="submit" class="btn-primary" style="background: transparent; border: 1px solid var(--accent);"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
                 </form>
             </header>
             <main class="content-wrapper">

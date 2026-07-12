@@ -1,8 +1,92 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@model InventoryERP.Web.Models.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <h1 style="margin: 0;">Dashboard</h1>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+    <!-- Stat Cards -->
+    <div class="glass-panel" style="padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem;">
+        <div style="background: rgba(59, 130, 246, 0.2); color: var(--accent); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.75rem;">
+            <i class="fa-solid fa-box-open"></i>
+        </div>
+        <div>
+            <div style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.25rem;">Total Products</div>
+            <div style="font-size: 1.75rem; font-weight: bold; color: var(--text-primary);">@Model.TotalProducts</div>
+        </div>
+    </div>
+    
+    <div class="glass-panel" style="padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem;">
+        <div style="background: rgba(34, 197, 94, 0.2); color: var(--success); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.75rem;">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+        </div>
+        <div>
+            <div style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.25rem;">Total Sales</div>
+            <div style="font-size: 1.75rem; font-weight: bold; color: var(--text-primary);">@Model.TotalSales.ToString("C")</div>
+        </div>
+    </div>
+    
+    <div class="glass-panel" style="padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem;">
+        <div style="background: rgba(245, 158, 11, 0.2); color: var(--warning); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.75rem;">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+        <div>
+            <div style="color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 0.25rem;">Total Purchases</div>
+            <div style="font-size: 1.75rem; font-weight: bold; color: var(--text-primary);">@Model.TotalPurchases.ToString("C")</div>
+        </div>
+    </div>
+</div>
+
+<div class="glass-panel" style="margin-bottom: 2rem;">
+    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+        <i class="fa-solid fa-triangle-exclamation" style="color: var(--danger); font-size: 1.25rem;"></i>
+        <h2 style="margin: 0; font-size: 1.25rem;">Low Stock Alerts (@Model.LowStockAlertCount)</h2>
+    </div>
+    
+    @if (Model.LowStockAlertCount > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Product Code</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Current Stock</th>
+                    <th>Reorder Level</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.LowStockProducts)
+                {
+                    <tr>
+                        <td>@item.ProductCode</td>
+                        <td>@item.Name</td>
+                        <td>@item.Category?.Name</td>
+                        <td>
+                            <span style="background: rgba(239, 68, 68, 0.2); color: #f87171; padding: 0.25rem 0.5rem; border-radius: 0.25rem; font-weight: bold;">
+                                @item.CurrentStock
+                            </span>
+                        </td>
+                        <td>@item.ReorderLevel</td>
+                        <td>
+                            <div class="action-buttons">
+                                <a asp-controller="Purchases" asp-action="Create" class="btn-primary btn-sm"><i class="fa-solid fa-cart-plus"></i> Restock</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div style="text-align: center; color: var(--text-secondary); padding: 2rem;">
+            <i class="fa-solid fa-check-circle" style="font-size: 3rem; color: var(--success); margin-bottom: 1rem; display: block;"></i>
+            Inventory levels are healthy! No low stock alerts.
+        </div>
+    }
 </div>

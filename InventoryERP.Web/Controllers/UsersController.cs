@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InventoryERP.Web.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Super Admin,Administrator")]
     public class UsersController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

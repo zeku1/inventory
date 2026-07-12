@@ -1,14 +1,16 @@
 @model IEnumerable<InventoryERP.Data.Models.Product>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Products";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+    <h1 style="margin: 0;">Products</h1>
+    @if (User.IsInRole("Super Admin") || User.IsInRole("Administrator"))
+    {
+        <a asp-action="Create" class="btn-primary"><i class="fa-solid fa-plus"></i> Create New Product</a>
+    }
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -52,7 +54,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Category.Description)
+                @Html.DisplayFor(modelItem => item.Category.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Unit)
@@ -73,9 +75,17 @@
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <div class="action-buttons">
+                    @if (User.IsInRole("Super Admin") || User.IsInRole("Administrator"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn-secondary btn-sm"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                    }
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn-info btn-sm"><i class="fa-solid fa-circle-info"></i> Details</a>
+                    @if (User.IsInRole("Super Admin") || User.IsInRole("Administrator"))
+                    {
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn-danger btn-sm"><i class="fa-solid fa-trash"></i> Delete</a>
+                    }
+                </div>
             </td>
         </tr>
 }

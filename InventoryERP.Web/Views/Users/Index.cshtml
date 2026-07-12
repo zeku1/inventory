@@ -7,7 +7,7 @@
 <div class="glass-panel" style="margin-bottom: 2rem;">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
         <h2 style="margin: 0;">Users</h2>
-        <a asp-action="Create" class="btn-primary">Add New User</a>
+        <a asp-action="Create" class="btn-primary"><i class="fa-solid fa-user-plus"></i> Add New User</a>
     </div>
 
     <table>
@@ -25,7 +25,7 @@
                     <td>@item.Email</td>
                     <td><span style="background: rgba(59, 130, 246, 0.2); color: var(--accent); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem;">@item.Role</span></td>
                     <td>
-                        <a asp-action="Delete" asp-route-id="@item.Id" style="color: var(--danger);">Delete</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn-danger btn-sm"><i class="fa-solid fa-trash"></i> Delete</a>
                     </td>
                 </tr>
             }

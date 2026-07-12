@@ -338,4 +338,5 @@ C:\Users\kim\Work\Inventory\InventoryERP.Web\bin\Debug\net10.0\ru\Microsoft.Code
 C:\Users\kim\Work\Inventory\InventoryERP.Web\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\kim\Work\Inventory\InventoryERP.Web\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\kim\Work\Inventory\InventoryERP.Web\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
-C:\Users\kim\Work\Inventory\InventoryERP.Web\obj\Debug\net10.0\compressed\rpdycihy34-{0}-sd6630zp3m-sd6630zp3m.gz
+C:\Users\kim\Work\Inventory\InventoryERP.Web\obj\Debug\net10.0\InventoryERP.Web.sourcelink.json
+C:\Users\kim\Work\Inventory\InventoryERP.Web\obj\Debug\net10.0\compressed\rpdycihy34-{0}-qi93hlc245-qi93hlc245.gz

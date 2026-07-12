@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace InventoryERP.Web.Controllers
 {
-    [Authorize(Roles = "Administrator,Inventory Staff")]
+    [Authorize(Roles = "Super Admin,Administrator,Inventory Staff,Sales Staff")]
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -48,9 +48,10 @@ namespace InventoryERP.Web.Controllers
         }
 
         // GET: Products/Create
+        [Authorize(Roles = "Super Admin,Administrator")]
         public IActionResult Create()
         {
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Description");
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
             return View();
         }
 
@@ -59,6 +60,7 @@ namespace InventoryERP.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Super Admin,Administrator")]
         public async Task<IActionResult> Create([Bind("Id,ProductCode,Name,CategoryId,Unit,SellingPrice,CostPrice,CurrentStock,ReorderLevel,Status")] Product product)
         {
             if (ModelState.IsValid)
@@ -67,11 +69,12 @@ namespace InventoryERP.Web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Description", product.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
             return View(product);
         }
 
         // GET: Products/Edit/5
+        [Authorize(Roles = "Super Admin,Administrator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -84,7 +87,7 @@ namespace InventoryERP.Web.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Description", product.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
             return View(product);
         }
 
@@ -93,6 +96,7 @@ namespace InventoryERP.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Super Admin,Administrator")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,ProductCode,Name,CategoryId,Unit,SellingPrice,CostPrice,CurrentStock,ReorderLevel,Status")] Product product)
         {
             if (id != product.Id)
@@ -120,11 +124,12 @@ namespace InventoryERP.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Description", product.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
             return View(product);
         }
 
         // GET: Products/Delete/5
+        [Authorize(Roles = "Super Admin,Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -146,6 +151,7 @@ namespace InventoryERP.Web.Controllers
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Super Admin,Administrator")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var product = await _context.Products.FindAsync(id);

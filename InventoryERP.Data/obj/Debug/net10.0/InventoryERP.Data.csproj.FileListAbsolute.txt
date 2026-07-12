@@ -10,3 +10,4 @@ C:\Users\kim\Work\Inventory\InventoryERP.Data\obj\Debug\net10.0\InventoryERP.Dat
 C:\Users\kim\Work\Inventory\InventoryERP.Data\obj\Debug\net10.0\refint\InventoryERP.Data.dll
 C:\Users\kim\Work\Inventory\InventoryERP.Data\obj\Debug\net10.0\InventoryERP.Data.pdb
 C:\Users\kim\Work\Inventory\InventoryERP.Data\obj\Debug\net10.0\ref\InventoryERP.Data.dll
+C:\Users\kim\Work\Inventory\InventoryERP.Data\obj\Debug\net10.0\InventoryERP.Data.sourcelink.json
