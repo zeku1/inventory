@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InventoryERP.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f0aed0ddb57195776f3f48cfafa3858a49e4127")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ef22aec7a2b87c5eba2e0a3060655e3541182105")]
 [assembly: System.Reflection.AssemblyProductAttribute("InventoryERP.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InventoryERP.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
